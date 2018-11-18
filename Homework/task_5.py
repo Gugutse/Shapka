@@ -28,6 +28,17 @@ def q_uniq_el(l):
     for name in l:
         uniq_el.add(name)
     return(len(uniq_el))
+
+
+# максимальная глубина папки
+def max_level(directory_path):
+    level = 0
+    count_fol = directory_path.count('/')
+    for r, d, f in os.walk(directory_path):
+        a = dirpath.count('/') - count_fol + 1
+        if a > level:
+            level = a
+    return(level)
            
 
 # получаем список названий папок
@@ -85,13 +96,19 @@ def most_common_ext(directory_path):
             ext_names.append(ext)
     return(most_common(ext_names))
 
+ans_1 = "1. Какова максимальная глубина папки в этом дереве: "+str(max_level(directory_path))
+ans_2 = "2. Cколько в дереве папок с полностью кириллическими названиями: "+str(russian_names())
+ans_3 = "3. Файлы с каким расширением чаще всего встречаются в папках: "+most_common_ext(directory_path)
+ans_4 = "4. На какую букву начинается название большинства папок: "+most_common_first_char()
+ans_5 = "5. Сколько в папках встречается разных названий файлов без учёта расширений: "+str(files_uniq(directory_path))
+ans_7 = "7. В какой папке лежит больше всего файлов: "+max_files(directory_path)
 
-ans_2 = "Cколько в дереве папок с полностью кириллическими названиями: "+str(russian_names())
-ans_3 = "Файлы с каким расширением чаще всего встречаются в папках: "+most_common_ext(directory_path)
-ans_4 = "На какую букву начинается название большинства папок: "+most_common_first_char()
-ans_5 = "Сколько в папках встречается разных названий файлов без учёта расширений: "+str(files_uniq(directory_path))
-ans_7 = "В какой папке лежит больше всего файлов: "+max_files(directory_path)
+def main():
+    with open('answers.txt', 'w') as a:
+        print(ans_1 + '\n' + ans_2 + '\n' + ans_3 + '\n' + ans_4 + '\n' + ans_5 + '\n' + ans_7, file=a)
 
-with open('answers.txt', 'w') as a:
-    print(ans_2 + '\n' + ans_3 + '\n' + ans_4 + '\n' + ans_5 + '\n' + ans_7, file=a)
+        
+        
+if __name__ == '__main__':
+   main()
 
