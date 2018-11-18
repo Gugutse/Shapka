@@ -75,6 +75,20 @@ def max_files(directory_path):
     values =list(dict.values())
     keys =list(dict.keys())
     return(keys[values.index(max(values))])
+
+
+#в скольких папках встречается несколько файлов с одним и тем же расширением
+def fol_w_rep_ext(directory_path):
+    fol_w_rep_ext = 0
+    for r, d, f in os.walk(directory_path):
+        ext_l = []
+        for filename in f:
+            basename, ext = os.path.splitext(filename)
+            ext_l.append(ext)
+        uniq_ext = q_uniq_el(ext_l)
+        if len(f) != uniq_ext:
+            fol_w_rep_ext += 1
+    return(fol_w_rep_ext)
            
 
 # сколько в папках встречается разных названий файлов без учёта расширений
@@ -101,11 +115,12 @@ ans_2 = "2. Cколько в дереве папок с полностью ки�
 ans_3 = "3. Файлы с каким расширением чаще всего встречаются в папках: "+most_common_ext(directory_path)+'\n'
 ans_4 = "4. На какую букву начинается название большинства папок: "+most_common_first_char()+'\n'
 ans_5 = "5. Сколько в папках встречается разных названий файлов без учёта расширений: "+str(files_uniq(directory_path))+'\n'
+ans_6 = "6. В скольких папках встречается несколько файлов с одним и тем же расширением: "+str(fol_w_rep_ext(directory_path))+'\n'
 ans_7 = "7. В какой папке лежит больше всего файлов: "+max_files(directory_path)+'\n'
 
 def main():
     with open('answers.txt', 'w') as a:
-        print(ans_1 + ans_2 + ans_3 + ans_4 + ans_5 + ans_7, file=a)
+        print(ans_1 + ans_2 + ans_3 + ans_4 + ans_5 + ans_6 + ans_7, file=a)
 
         
         
