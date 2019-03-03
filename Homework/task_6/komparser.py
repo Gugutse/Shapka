@@ -126,8 +126,8 @@ def get_komm_day(archive_url, daydate, site, csvwriter):
             result.append(l)
             #time.sleep(0.3)
     except:
-        if more == None:
-            day_links_more = None
+        #if more[0] == "https://www.kommersant.ru":
+        day_links_more = None
         pass
     
     fin = []
